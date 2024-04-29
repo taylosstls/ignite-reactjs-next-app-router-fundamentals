@@ -1,17 +1,16 @@
 interface ProductsProps {
   params: {
-    data: {
-      productId: string
-      size: string
-      color: string
-    }
+    data: [productId: string, size: string, color: string]
   }
 }
 
 // URL ficaria no formato:
 // site.com.br/catalog/products/"productId/size/color"
 export default function Product({ params }: ProductsProps) {
-  const { productId, size, color } = params.data
+  const [productId, size, color] = params.data
+
+  console.log(params)
+
   return (
     <div>
       <p>Product: {productId}</p>
