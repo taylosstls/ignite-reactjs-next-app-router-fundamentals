@@ -1,3 +1,3 @@
-export default function Loading() {
+export default function RootLoading() {
   return <h1>Carregando...</h1>
 }

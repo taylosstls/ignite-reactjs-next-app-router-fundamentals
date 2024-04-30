@@ -1,14 +1,19 @@
-// Client Components => O JS é enviado ao navegador e passa a ter interatividade na tela
-'use client'
+import { AddToCart } from './add-to-cart-button'
+
 interface ProductsProps {
   params: {
-    data: [productId: string, size: string, color: string]
+    data: string[]
   }
 }
 
 /*
- Server Components => A gente não usa o JavaScript no lado do cliente
- o debug ocorre dentro do próprio NEXT server e não tem interatividade do usuário
+  Server Components => A gente não usa o JavaScript no lado do cliente
+  o debug ocorre dentro do próprio NEXT server e não tem interatividade do usuário
+*/
+
+/*
+  Streaming Server-side Rendering (SSR) => ler/escrever dados de forma parcial
+  Renderizar um componente de forma parcial por um fetch de dados
 */
 
 export default function Product({ params }: ProductsProps) {
@@ -20,22 +25,13 @@ export default function Product({ params }: ProductsProps) {
 
   console.log(params)
 
-  function addToCart() {
-    console.log('Adicionou ao carrinho')
-  }
-
   return (
     <div>
       <p>Product: {productId}</p>
       <p>Size: {size}</p>
       <p>Color: {color}</p>
 
-      <button
-        className="mt-2 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-        onClick={addToCart}
-      >
-        Adicionar ao carrinho
-      </button>
+      <AddToCart />
     </div>
   )
 }
