@@ -4,7 +4,7 @@ import { Search, ShoppingBag } from 'lucide-react'
 
 export function Header() {
   return (
-    <div className="flex items-center justify-between">
+    <header className="flex items-center justify-between">
       <div className="flex items-center gap-5">
         <Link href="/" className="text-2xl font-extrabold text-white">
           <Image
@@ -36,13 +36,13 @@ export function Header() {
           <span className="text-sm">Account</span>
           <Image
             src="https://github.com/taylosstls.png"
-            className="h-6 w-6 rounded-full"
-            width={24}
-            height={24}
+            className="h-6 w-6 object-cover object-center rounded-full"
+            width={48}
+            height={48}
             alt=""
           />
         </Link>
       </div>
-    </div>
+    </header>
   )
 }
