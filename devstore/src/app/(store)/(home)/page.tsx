@@ -3,8 +3,24 @@ import { Product } from '@/data/types/products'
 import Image from 'next/image'
 import Link from 'next/link'
 
+/**
+ * Cache & Memoization
+ * 'useMemo' / 'memo' / 'useCallback'
+ * 
+ * React Memoization: O React não permite fazer requisição 2x da mesma rota
+ * diferente do caso do usuário navegar em uma outra página, aí a requisição ocorrerá novamente
+ * 
+ */
+
+
 async function getFeaturedProducts(): Promise<Product[]> {
-  const response = await api('/products/featured')
+  const response = await api('/products/featured', {
+    next: {
+      revalidate: 60 * 10, // Daqui 10 minutos criará um novo cache
+    },
+    // cache: 'force-cache' // formato padrão ou usa o cache ou usa o next. Por exemplo: E-Commerce com produtos fixos
+    // cache: 'no-store' => A requisição sempre será requisitada. Por exemplo: Recomendação de vídeos do Youtube
+  })
 
   const products = await response.json()
 
@@ -13,7 +29,6 @@ async function getFeaturedProducts(): Promise<Product[]> {
 
 export default async function Home() {
   const [ highlightedProduct, ...otherProducts ] = await getFeaturedProducts()
-
 
   return (
     <div className="grid max-h-[860px] grid-cols-9 grid-rows-6 gap-6">
