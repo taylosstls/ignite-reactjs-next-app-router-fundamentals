@@ -8,10 +8,11 @@ export function Header() {
       <div className="flex flex-wrap justify-center items-center gap-5">
         <Link href="/" className="text-2xl font-extrabold text-white">
           <Image
+            className="lg:w-[106px] lg:h-[29]"
             src="/devstore.svg"
             alt="Logomarca Devstore"
-            width={106}
-            height={29}
+            width={141}
+            height={39}
           />
         </Link>
 
