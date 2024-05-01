@@ -26,18 +26,20 @@ export function Header() {
       </div>
 
       <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <ShoppingBag className="h-4 w-4" />
-          <span className="text-sm">Cart (0)</span>
+        <div className="flex items-center gap-2 relative">
+          <ShoppingBag className="h-6 w-6 mr-2" />
+          <span className="absolute -bottom-3.5 -right-2 text-sm text-center rounded-full flex justify-center align-middle items-center h-6 w-6 p-3 bg-violet-500">
+            0
+          </span>
         </div>
 
         <div className="w-px h-4 bg-zinc-700"></div>
 
-        <Link href="/" className="flex items-center gap-2 hover:underline">
-          <span className="text-sm">Account</span>
+        <Link href="/" className="flex items-center gap-3 hover:underline">
+          <span className="text-sm">Conta</span>
           <Image
             src="https://github.com/taylosstls.png"
-            className="h-6 w-6 object-cover object-center rounded-full"
+            className="h-8 w-8 object-cover object-center rounded-full"
             width={48}
             height={48}
             alt=""
