@@ -8,8 +8,10 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Devstore',
-  description: 'Loja e-commerce feita em NextJS',
+  title: {
+    template: '%s | Devstore',
+    default: 'Devstore',
+  },
 }
 
 export default function RootLayout({

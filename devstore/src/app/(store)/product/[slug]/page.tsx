@@ -1,5 +1,6 @@
 import { api } from '@/data/api'
 import { Product } from '@/data/types/products'
+import { Metadata } from 'next'
 import Image from 'next/image'
 
 interface ProductProps {
@@ -8,6 +9,9 @@ interface ProductProps {
   }
 }
 
+// Memoização - Como generateMetadata e ProductPage, chamam a mesma API
+// só vai ser evocado uma única vez requisição da rota
+
 async function getProduct(slug: string): Promise<Product> {
   const response = await api(`/products/${slug}`, {
     next: {
@@ -15,9 +19,19 @@ async function getProduct(slug: string): Promise<Product> {
     },
   })
 
-  const products = await response.json()
+  const product = await response.json()
 
-  return products
+  return product
+}
+
+export async function generateMetadata({
+  params,
+}: ProductProps): Promise<Metadata> {
+  const product = await getProduct(params.slug)
+
+  return {
+    title: product.title,
+  }
 }
 
 export default async function ProductPage({ params }: ProductProps) {
