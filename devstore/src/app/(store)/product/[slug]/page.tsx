@@ -1,3 +1,4 @@
+import { AddToCartButton } from '@/components/add-to-cart-button'
 import { api } from '@/data/api'
 import { Product } from '@/data/types/products'
 import { Metadata } from 'next'
@@ -34,7 +35,17 @@ export async function generateMetadata({
   }
 }
 
+export async function generateStaticParams() {
+  const response = await api('/products/featured')
+  const products: Product[] = await response.json()
+
+  return products.map((product) => {
+    return { slug: product.slug }
+  })
+}
+
 export default async function ProductPage({ params }: ProductProps) {
+  const sweatshirtSizes = ['PP', 'P', 'M', 'G', 'GG', 'XG']
   const product = await getProduct(params.slug)
 
   return (
@@ -64,7 +75,7 @@ export default async function ProductPage({ params }: ProductProps) {
             })}
           </span>
           <span className="text-sm text-zinc-400">
-            Em 12x s/juros de
+            Em 12x s/juros de{' '}
             {(product.price / 12).toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL',
@@ -76,21 +87,27 @@ export default async function ProductPage({ params }: ProductProps) {
           <span className="block font-semibold">Tamanhos</span>
 
           <div className="flex gap-2">
-            <button
-              type="button"
-              className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-700 bg-zinc-800 text-sm font-semibold transition-all hover:bg-zinc-700"
-            >
-              P
-            </button>
+            {sweatshirtSizes.map((size) => (
+              <div className="relative" key={size}>
+                <input
+                  type="radio"
+                  id={`sweatshirt-${size}`}
+                  name="sweatshirtSize"
+                  className="hidden peer"
+                  value={size}
+                />
+                <label
+                  htmlFor={`sweatshirt-${size}`}
+                  className="flex h-9 w-14 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900 text-sm font-semibold transition-all cursor-pointer select-none hover:bg-zinc-700 peer-checked:bg-zinc-500"
+                >
+                  {size}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
 
-        <button
-          type="button"
-          className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white transition-all hover:bg-emerald-500"
-        >
-          Adicionar ao carrinho
-        </button>
+        <AddToCartButton productId={product.id} />
       </div>
     </div>
   )
