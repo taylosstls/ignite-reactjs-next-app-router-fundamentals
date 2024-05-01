@@ -4,8 +4,8 @@ import { Search, ShoppingBag } from 'lucide-react'
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between">
-      <div className="flex items-center gap-5">
+    <header className="flex flex-wrap items-center justify-center lg:justify-between gap-6 lg:gap-0">
+      <div className="flex flex-wrap justify-center items-center gap-5">
         <Link href="/" className="text-2xl font-extrabold text-white">
           <Image
             src="/devstore.svg"
