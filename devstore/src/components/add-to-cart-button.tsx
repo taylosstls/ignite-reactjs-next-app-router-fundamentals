@@ -1,6 +1,8 @@
 'use client'
 
 import { useCart } from '@/app/contexts/cart-context'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export interface AddToCartButtonProps {
   productId: number
@@ -11,15 +13,31 @@ export function AddToCartButton({ productId }: AddToCartButtonProps) {
 
   function handleAddProductToCart() {
     addToCart(productId)
+    toast.success('Seu produto foi adicionado!', {})
   }
 
   return (
-    <button
-      type="button"
-      onClick={handleAddProductToCart}
-      className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white transition-all hover:bg-emerald-500"
-    >
-      Adicionar ao carrinho
-    </button>
+    <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        limit={1}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+      <button
+        type="button"
+        onClick={handleAddProductToCart}
+        className="mt-8 flex h-12 items-center justify-center rounded-full bg-emerald-600 font-semibold text-white transition-all hover:bg-emerald-500"
+      >
+        Adicionar ao carrinho
+      </button>
+    </>
   )
 }
