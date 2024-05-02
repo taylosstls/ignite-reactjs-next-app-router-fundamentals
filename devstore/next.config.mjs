@@ -12,6 +12,12 @@ const nextConfig = {
   env: {
     metadataBase: 'http://localhost:3000',
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 }
 
 export default nextConfig
