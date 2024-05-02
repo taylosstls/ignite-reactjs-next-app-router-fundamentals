@@ -6,7 +6,7 @@ import { SearchForm } from './search-form'
 
 export function Header() {
   return (
-    <header className="flex flex-wrap items-center justify-center lg:justify-between gap-6 lg:gap-0">
+    <header className="flex flex-wrap items-center justify-center lg:justify-between gap-6 lg:gap-0 mb-4">
       <div className="flex flex-wrap justify-center items-center gap-5">
         <Link href="/" className="text-2xl font-extrabold text-white">
           <Image
@@ -33,7 +33,7 @@ export function Header() {
             className="h-8 w-8 object-cover object-center rounded-full"
             width={48}
             height={48}
-            alt=""
+            alt="Minha conta"
           />
         </Link>
       </div>
