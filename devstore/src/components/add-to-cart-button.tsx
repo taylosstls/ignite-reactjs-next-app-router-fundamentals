@@ -13,7 +13,7 @@ export function AddToCartButton({ productId }: AddToCartButtonProps) {
 
   function handleAddProductToCart() {
     addToCart(productId)
-    toast.success('Seu produto foi adicionado!', {})
+    toast.success('Produto adicionado ao carrinho!', {})
   }
 
   return (
